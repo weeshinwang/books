@@ -1,0 +1,34 @@
+body {
+  color: #333;
+  background-color: #ccc;
+  margin: 1em 10%;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+}
+h1 {
+  color: #333;
+  background-color: transparent;
+}
+a {
+  color: #c60;
+  background-color: transparent;
+  font-weight: bold;
+  text-decoration: none;
+}
+ul {
+  padding: 0;
+}
+li {
+  float: left;
+  padding: 1em;
+  list-style: none;
+}
+img {
+  display: block;
+  clear: both;
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border: 1px solid tomato;
+}
