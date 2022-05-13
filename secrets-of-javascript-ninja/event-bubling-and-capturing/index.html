@@ -1,0 +1,27 @@
+<style>
+  body * {
+    margin: 10px;
+    border: 1px solid blue;
+  }
+</style>
+
+<form>
+  FORM
+  <div>
+    DIV
+    <p>P</p>
+  </div>
+</form>
+
+<script>
+  for (let elem of document.querySelectorAll('*')) {
+    elem.addEventListener('click', (e) =>
+      console.log(`Bubbling: ${elem.tagName}`)
+    );
+    elem.addEventListener(
+      'click',
+      (e) => console.log(`Capturing: ${elem.tagName}`),
+      true
+    );
+  }
+</script>
