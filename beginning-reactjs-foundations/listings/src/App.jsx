@@ -1,9 +1,9 @@
-import CounterClass from './components/6-28 Using the updater function with setState';
+import DefaultApp from './components/11-16 CountingBox';
 
 function App() {
   return (
     <>
-      <CounterClass />
+      <DefaultApp />
     </>
   );
 }
