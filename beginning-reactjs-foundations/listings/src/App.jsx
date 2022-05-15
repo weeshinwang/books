@@ -1,4 +1,4 @@
-import DefaultApp from './components/11-16 CountingBox';
+import DefaultApp from './components/12-12 RedirectRoute';
 
 function App() {
   return (
