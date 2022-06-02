@@ -2,9 +2,13 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const multiparty = require('multiparty');
+const cookieParser = require('cookie-parser');
+const expressSession = require('express-session');
 
-const weatherMiddlware = require('./lib/middleware/weather');
 const handlers = require('./lib/handlers');
+const credentials = require('./credentials');
+const weatherMiddlware = require('./lib/middleware/weather');
+const flashMiddleware = require('./lib/middleware/flash');
 
 const app = express();
 
@@ -28,11 +32,21 @@ app.disable('x-powered-by');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(cookieParser(credentials.cookieSecret));
+app.use(
+  expressSession({
+    resave: false,
+    saveUninitialized: false,
+    secret: credentials.cookieSecret,
+  })
+);
+
 const port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/public'));
 
 app.use(weatherMiddlware);
+app.use(flashMiddleware);
 
 app.get('/', handlers.home);
 
@@ -40,6 +54,7 @@ app.get('/', handlers.home);
 app.get('/newsletter-signup', handlers.newsletterSignup);
 app.post('/newsletter-signup/process', handlers.newsletterSignupProcess);
 app.get('/newsletter-signup/thank-you', handlers.newsletterSignupThankYou);
+app.get('/newsletter-archive', handlers.newsletterSignupThankYou);
 
 // handlers for fetch/JSON form submission
 app.get('/newsletter', handlers.newsletter);
