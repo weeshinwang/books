@@ -1,0 +1,1 @@
+console.blue(2);
